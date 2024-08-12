@@ -5,8 +5,8 @@ export interface POKECARDPROPS {
     name: string,
     url: string,
     number: number,
-    captureAction: () => void,
-    onPress?: () => void,
+    captureAction: (url: string) => void,
+    onPress: (url: string) => void,
     img?:  ImageSourcePropType,
     captured?: boolean
 }

@@ -42,7 +42,7 @@ export const PokeNumber = styled.Text`
 `
 
 export const PokeImage =styled.Image`
-    width: 96px;
-    height: 96px;
+    width: 72px;
+    height: 72px;
     resize-mode: contain;
 `

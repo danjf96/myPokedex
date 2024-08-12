@@ -14,6 +14,14 @@ const useHomeViewModel = () => {
     return listOfPokemons;
   }, [listOfPokemons])
 
+  const seeDetails = (url: string) => {
+    console.log(url)
+  }
+
+  const capturePokemon = (url: string) => {
+    console.log(url)
+  }
+
   useEffect( () => {
 
     getList();
@@ -21,8 +29,10 @@ const useHomeViewModel = () => {
   
   return {
     pokeList,
+    loading,
     getList,
-    loading
+    seeDetails,
+    capturePokemon
   };
 };
 
