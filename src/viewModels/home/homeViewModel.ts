@@ -8,7 +8,7 @@ const useHomeViewModel = () => {
   const dispatch = useAppDispatch();
 
   const getList = () => {
-    dispatch(getListOfPokemons({ limit: 20, offset: 20 }))
+    dispatch(getListOfPokemons({ limit: 20, offset: 0 }))
   }
   const pokeList = useMemo( () => {    
     return listOfPokemons;

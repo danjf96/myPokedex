@@ -1,16 +1,20 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import { CONTAINERPROPS } from './types'
 import { SafeAreaViewContainer, ViewContainer, ScrollviewContainer } from './styles'
 
 
 const Container: React.FC<CONTAINERPROPS> = (props) => {
+    const renderScroll = (!props?.enabledScroll)
+    ? 
+        <ViewContainer style={props?.style} testID='container-component'>{props?.children}</ViewContainer> 
+    : 
+        <ViewContainer style={props?.style}>
+            <ScrollviewContainer scrollEnabled={props.enabledScroll} testID='container-component' />
+        </ViewContainer>
+
     return (
-        <SafeAreaViewContainer >
-            <ViewContainer style={props?.style}>
-                <ScrollviewContainer scrollEnabled={props?.enabledScroll ?? false}  testID='container-component'>
-                    {props?.children}
-                </ScrollviewContainer>
-            </ViewContainer>
+        <SafeAreaViewContainer>
+            {renderScroll}            
         </SafeAreaViewContainer>
     )
     
