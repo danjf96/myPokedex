@@ -5,7 +5,7 @@ import { NavigationContainer } from '@react-navigation/native' //
 import RootStack from './RootStack'
 import { ThemeProvider } from 'styled-components'
 import { ThemeApp } from '../assets/Theme'
-const rotasParaFechaApp = ['']
+const rotasParaFechaApp = ['Home']
 
 const Routes = () => {
     const nav:any = useRef();
@@ -23,7 +23,7 @@ const Routes = () => {
                     return false
                 } 
             } 
-            
+
             nav.current.goBack()
             
             return true;

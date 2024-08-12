@@ -10,6 +10,10 @@ import Routes from './src/routes';
 import { Provider } from 'react-redux';
 import store from './src/store';
 
+if (__DEV__) {
+  require("./ReactotronConfig");
+}
+
 const App = () => {
   return (
     <Provider store={store}>

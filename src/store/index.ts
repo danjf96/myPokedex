@@ -1,12 +1,18 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import pokedex from './pokedex/reducer'
+import Reactotron from '../../ReactotronConfig'
+
 
 const reducer = combineReducers({
     pokedex
 })
 // ...
 const store = configureStore({
-  reducer
+  reducer,
+  enhancers: (getDefaultEnhancers) => {
+    const reactotronEnhancer = __DEV__ ? [Reactotron.createEnhancer!()] : [];
+    return getDefaultEnhancers().concat(reactotronEnhancer);
+  },
 })
 
 export default store
