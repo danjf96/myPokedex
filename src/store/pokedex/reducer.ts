@@ -17,7 +17,7 @@ const pokedex = createSlice({
             .addCase(getListOfPokemons.pending, (state) => { state.loading = true })
             .addCase(getListOfPokemons.fulfilled, (state, action) => {
                 const { count, results, next, previous } = action.payload
-                state.listOfPokemons = results;
+                state.listOfPokemons = next != state.next ? [...state.listOfPokemons, ...results] : results ;
                 state.count = count;
                 state.next = next;
                 state.previous = previous;

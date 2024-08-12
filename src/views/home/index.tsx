@@ -1,12 +1,13 @@
 import React from 'react'
-import { FlatList, Text } from 'react-native'
+import { ActivityIndicator, FlatList, Text } from 'react-native'
 import useHomeViewModel from '../../viewModels/home/homeViewModel'
 import Container from '../../components/layouts/Container'
 import PokeCard from '../../components/pokeCard'
 import { URL_IMG_POKEMON } from '../../contants'
+import Loading from '../../components/layouts/Container/Loading'
 
 const Home = () => {
-    const { pokeList, seeDetails, capturePokemon } = useHomeViewModel()
+    const { pokeList, seeDetails, capturePokemon, pagination, isLoading } = useHomeViewModel()
     return (
         <Container>
             <FlatList 
@@ -23,8 +24,10 @@ const Home = () => {
                     />
                 }
                 data={pokeList}
-                
+                onEndReached={pagination}
+                onEndReachedThreshold={0.2}
             />
+            <Loading visible={isLoading} />
         </Container>
     )
 }

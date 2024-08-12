@@ -13,7 +13,8 @@ interface LISTPOKES {
 
 interface GETLISTOFPOKEMONSPROPS {
     offset: number,
-    limit: number
+    limit: number,
+    next?: string
 }
 
 interface GETLISTOFPOKEMONSRESULT {
