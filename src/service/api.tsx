@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 //DEV
-const baseURL = 'https://pokeapi.co/api/v2/pokemon/'
+const baseURL = 'https://pokeapi.co/api/v2/'
 
 var api = axios.create({
     baseURL,

@@ -1,14 +1,31 @@
 import { createSlice } from "@reduxjs/toolkit"
+import { getListOfPokemons } from "./action"
+import { Alert } from "react-native"
 
 const initialState: POKEDEXREDUX = {
     loading: false,
-    listOfPokemons: []
+    listOfPokemons: [],
+    count: 0
 }
 
 const pokedex = createSlice({
-    name: 'todos',
+    name: 'pokedex',
     initialState,
-    reducers: {}
+    reducers: {},
+    extraReducers: builder =>  {
+        builder
+            .addCase(getListOfPokemons.pending, (state) => { state.loading = true })
+            .addCase(getListOfPokemons.fulfilled, (state, action) => {
+                const { count, results, next, previous } = action.payload
+                state.listOfPokemons = results;
+                state.count = count;
+                state.next = next;
+                state.previous = previous;
+                state.loading = false;
+            })
+            .addCase(getListOfPokemons.rejected, (state, action) => { Alert.alert(`${action.error}`, action.error.message)} )
+
+    },
 })
 
 export  default pokedex.reducer

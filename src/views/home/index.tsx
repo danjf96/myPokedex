@@ -1,14 +1,16 @@
 import React from 'react'
 import { Text } from 'react-native'
-import useAppSelector from '../../hooks/store/useAppSelector'
+import useHomeViewModel from '../../viewModels/home/homeViewModel'
+import Container from '../../components/layouts/Container'
 
 const Home = () => {
-    const store = useAppSelector( ({ pokedex }) => pokedex)
-    console.log('AQUI', store)
+    const { getList, pokeList } = useHomeViewModel()
+
     return (
-        <>
+        <Container>
             <Text>Home</Text>
-        </>
+
+        </Container>
     )
 }
 
