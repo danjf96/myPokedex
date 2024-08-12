@@ -25,7 +25,8 @@ const useHomeViewModel = () => {
   }
 
   const pagination = () => {
-    dispatch(getListOfPokemons({ limit: 20, offset: 0, next }))
+    if(next)
+      dispatch(getListOfPokemons({ limit: 20, offset: 0, next }))
   }
 
   useEffect( () => {

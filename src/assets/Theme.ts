@@ -18,7 +18,7 @@ interface ThemeApp extends Theme {
 export const ThemeApp = (darkMode?: boolean) => <ThemeApp>{
     dark: false,
     colors: {
-        primary: "",
+        primary: "#E54A4A",
         background: "white",
         card: "",
         text: '#353535',
