@@ -112,6 +112,10 @@ android {
 
         }
     }
+
+    aaptOptions {
+        cruncherEnabled = false
+    }
 }
 
 dependencies {
