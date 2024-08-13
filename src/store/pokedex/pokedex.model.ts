@@ -4,7 +4,8 @@ interface POKEDEXREDUX {
     count: number
     next?: string,
     previous?: string,
-    search?: string
+    search?: string,
+    myList: LISTPOKES[]
 }
 
 interface LISTPOKES {

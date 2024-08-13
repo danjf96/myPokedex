@@ -1,19 +1,21 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { changeSearch, getListOfPokemons } from "./action"
+import { changeSearch, getListOfPokemons, setMyListPoke } from "./action"
 import { Alert } from "react-native"
 
 const initialState: POKEDEXREDUX = {
     loading: false,
     listOfPokemons: [],
     count: 0,
-    search: ''
+    search: '',
+    myList: []
 }
 
 const pokedex = createSlice({
     name: 'pokedex',
     initialState,
     reducers: {
-        changeSearchInput: changeSearch
+        changeSearchInput: changeSearch,
+        setMyList: setMyListPoke
     },
     extraReducers: builder =>  {
         builder
@@ -35,5 +37,5 @@ const pokedex = createSlice({
 })
 
 
-export const { changeSearchInput } = pokedex.actions
+export const { changeSearchInput, setMyList } = pokedex.actions
 export  default pokedex.reducer

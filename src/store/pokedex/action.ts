@@ -1,6 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
 import api from "../../service/api"
 import { URL_IMG_POKEMON } from "../../constants";
+import { setDataStorage } from "../../hooks/storage";
 
 export const getListOfPokemons = createAsyncThunk<GETLISTOFPOKEMONSRESULT, GETLISTOFPOKEMONSPROPS>(
     'pokedex/getListOfPokemons',
@@ -22,4 +23,27 @@ export const changeSearch = (state: POKEDEXREDUX, action: {
     type: string;
 }) => {
     state.search = action.payload 
+}
+
+export const setMyListPoke = (state: POKEDEXREDUX, action: {
+    payload: { list: LISTPOKES[], type: 'ADD' | 'REMOVE' };
+    type: string;
+}) => {
+    let list: LISTPOKES[] = []
+    switch(action.payload.type){
+        case 'ADD':
+            action.payload.list.map( l =>  {
+                if(state.myList.find( sl => sl.name === l.name))
+                    list.push(l)
+            })
+            list = [...list,...state.myList]
+            state.myList = list
+            break;
+        case 'REMOVE':
+            list = state.myList.filter( l => action.payload.list.find( al => al.name != l.name))
+            state.myList = list
+            break;
+    }
+
+    setDataStorage('MY_LIST', state)
 }

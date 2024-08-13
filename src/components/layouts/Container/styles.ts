@@ -7,7 +7,7 @@ const { width } = Dimensions.get('window')
 export const ViewContainer = styled.View<{ padding?: string }>`
     width: ${width}px;
     height: 100%;
-    padding: ${(props) => props.padding ? props.padding : props.theme.padding.container}
+    padding: ${(props) => props.padding ? props.padding : props.theme.padding.container};
 `
 
 export const SafeAreaViewContainer = styled(SafeAreaView)`

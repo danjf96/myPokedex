@@ -8,10 +8,12 @@ import { Card, CardType, CardTypeText, Column, HeaderContainerInfo, PokeImg, Row
 import { URL_IMG_POKEMON } from '../../constants'
 import IconSimplePokebola from '../../assets/icons/IconSimplePokebola'
 import IconArrowLeft from '../../assets/icons/IconArrowLeft'
+import Loading from '../../components/layouts/Loading'
+const PokedexImg = require('../../assets/imgs/pokedex.png');
 
 const InfoPokemon: React.FC = () => {
     const { pokemon, navigation, species } = useInfoPokemonViewModel()
-    const { name, id, stats, types } = pokemon
+    const { name, id, stats, types, loading } = pokemon
     const color = species?.color?.name || ThemeApp(false).colors.text
     const backgroundColor = ThemeApp(false).colors.background
 
@@ -25,7 +27,8 @@ const InfoPokemon: React.FC = () => {
                 onPressLeft={() => navigation.goBack()}
                 icon={(<IconSimplePokebola width={40} height={40} />)}
             />
-            <Container enabledScroll={true} padding='0px'>
+
+            <Container enabledScroll={true} padding={"0px"}>
                 <>
                     <HeaderContainerInfo 
                         background={color} 
@@ -34,12 +37,14 @@ const InfoPokemon: React.FC = () => {
                         colors={[color, 'white', '#f7f7f7', '#e6e6e6', color]}    
                     />
                     <View style={{ position: 'absolute', opacity: 1, alignSelf: 'center', justifyContent:'center' }}>
-                        <PokeImg source={{ uri: `${URL_IMG_POKEMON}${id}.png`}}/>
+                        <PokeImg source={{ uri: `${URL_IMG_POKEMON}${id}.png`}} defaultSource={PokedexImg}/>
                         <Title color={'white'} style={{ textAlign: 'center'}}>#{(id)?.toString()?.padStart(3, '0')}</Title>
                     </View>
                 </>
 
-                <View style={{ width: '100%', padding: 12 }}>
+                <Loading visible={loading} />
+                
+               {!loading && <View style={{ width: '100%', padding: 12 }}>
                     <Card color={color}>
                         <>
                             <TitleCard color={color}><Title color={color}>Stats</Title></TitleCard>
@@ -70,9 +75,9 @@ const InfoPokemon: React.FC = () => {
                         <Row style={{ flexWrap: 'wrap' }}>
                             {species?.egg_groups?.map( (item, index) => <CardType color={color} key={'egg'+index}><CardTypeText>{item.name}</CardTypeText></CardType>)}
                         </Row>
-
+                        <Loading visible={species.loading} />
                     </Card>
-                </View>
+                </View>}
                 
             </Container>
         </SafeAreaView>

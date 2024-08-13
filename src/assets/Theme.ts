@@ -13,7 +13,8 @@ interface ThemeApp extends Theme {
         success: string,
         info: string,
         activeTabBottom: string,
-        inactiveTabBottom: string
+        inactiveTabBottom: string,
+        loading: string
     },
     font: string,
     linearGradient: any
@@ -38,7 +39,8 @@ export const ThemeApp = (darkMode?: boolean) => <ThemeApp>{
         success: '#20A67B',
         info: '#2870FB',
         activeTabBottom: '#2870FB',
-        inactiveTabBottom: 'black'
+        inactiveTabBottom: 'black',
+        loading: '#FF1C1C'
     },
     font: Platform.OS === 'ios' ? 'San Francisco' : 'Roboto',
     linearGradient: ['white', '#f7f7f7', '#e6e6e6']
