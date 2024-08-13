@@ -12,7 +12,7 @@ import Loading from '../../components/layouts/Loading'
 const PokedexImg = require('../../assets/imgs/pokedex.png');
 
 const InfoPokemon: React.FC = () => {
-    const { pokemon, navigation, species } = useInfoPokemonViewModel()
+    const { pokemon, navigation, species, verifyIfIsSave, savePokemon } = useInfoPokemonViewModel()
     const { name, id, stats, types, loading } = pokemon
     const color = species?.color?.name || ThemeApp(false).colors.text
     const backgroundColor = ThemeApp(false).colors.background
@@ -24,10 +24,11 @@ const InfoPokemon: React.FC = () => {
                 title={name}
                 styleTitle={{ color }}
                 iconLeft={<IconArrowLeft  />} 
+                onPress={savePokemon}
                 onPressLeft={() => navigation.goBack()}
-                icon={(<IconSimplePokebola width={40} height={40} />)}
+                icon={(<IconSimplePokebola width={40} height={40} fill={ !verifyIfIsSave ?  ThemeApp(false).customColors.inactiveTabBottom : ''}  opacity={!verifyIfIsSave ? 0.5 : 1 }/>)}
             />
-
+            
             <Container enabledScroll={true} padding={"0px"}>
                 <>
                     <HeaderContainerInfo 

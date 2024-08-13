@@ -10,7 +10,7 @@ import { ThemeApp } from '../../assets/Theme'
 import FormHeader from '../../components/FormHeader'
 
 const Home = () => {
-    const { pokeList, seeDetails, capturePokemon, pagination, isLoading, changeSearchValue, filter } = useHomeViewModel()
+    const { seeDetails, capturePokemon, pagination, isLoading, changeSearchValue, filter, verifyIfIsSave, pokeList } = useHomeViewModel()
     return (
         <SafeAreaView style={{ backgroundColor: ThemeApp(false).colors.background, height:'100%' }}>
             <Container >  
@@ -27,7 +27,7 @@ const Home = () => {
                             url={item.url} 
                             number={item?.number || 0} 
                             captureAction={capturePokemon} 
-                            captured={false}
+                            captured={verifyIfIsSave(item.name)}
                             onPress={seeDetails}
                         />
                     }

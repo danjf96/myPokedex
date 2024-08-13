@@ -5,7 +5,7 @@ export interface POKECARDPROPS {
     name: string,
     url: string,
     number: number,
-    captureAction: (url: string) => void,
+    captureAction: (poke: LISTPOKES) => void,
     onPress: (url: string) => void,
     img?:  ImageSourcePropType,
     captured?: boolean

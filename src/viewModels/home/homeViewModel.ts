@@ -2,12 +2,12 @@ import useAppSelector from '../../hooks/store/useAppSelector';
 import useAppDispatch from '../../hooks/store/useAppDispatch';
 import { useEffect, useMemo } from 'react';
 import { getListOfPokemons } from '../../store/pokedex/action';
-import { changeSearchInput } from '../../store/pokedex/reducer';
+import { changeSearchInput, setMyList } from '../../store/pokedex/reducer';
 import { useNavigation } from '@react-navigation/native';
 import { setPokemon } from '../../store/pokemon/reducer';
 
 const useHomeViewModel = () => {
-  const { listOfPokemons, loading, next, search } = useAppSelector( state => state.pokedex);
+  const { listOfPokemons, loading, next, search, myList } = useAppSelector( state => state.pokedex);
   const dispatch = useAppDispatch();
   const nav = useNavigation()
 
@@ -18,6 +18,10 @@ const useHomeViewModel = () => {
     return listOfPokemons;
   }, [listOfPokemons])
 
+  const myPokeList = useMemo( () => {    
+    return myList;
+  }, [myList])
+
   const isLoading = useMemo( () => { return loading}, [loading])
 
   const seeDetails = (url: string) => {
@@ -25,8 +29,8 @@ const useHomeViewModel = () => {
     nav.navigate('InfoPokemon' as never)
   }
 
-  const capturePokemon = (url: string) => {
-    console.log(url)
+  const capturePokemon = (poke: LISTPOKES) => {
+    dispatch(setMyList({ list: [poke], type: verifyIfIsSave(poke.name) ? 'REMOVE' : 'ADD' }))
   }
 
   const pagination = () => {
@@ -40,6 +44,10 @@ const useHomeViewModel = () => {
   
   const changeSearchValue = (text: string) => { dispatch(changeSearchInput(text))  }
 
+  const verifyIfIsSave = (name: string) => {
+    return myList.find( my => my.name === name) ? true : false
+  }
+
   useEffect( () => {
     getList();
   }, [])
@@ -51,7 +59,9 @@ const useHomeViewModel = () => {
     capturePokemon,
     pagination,
     filter,
-    changeSearchValue
+    changeSearchValue,
+    verifyIfIsSave,
+    myPokeList
   };
 };
 

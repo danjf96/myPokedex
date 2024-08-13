@@ -31,7 +31,7 @@ const species = createSlice({
         builder
             .addCase(getInfosSpecies.pending, (state) => { state.loading = true })
             .addCase(getInfosSpecies.fulfilled, (state, action) => {
-                state.color = (customColor?.[action.payload.color.name]) ? { ...action.payload.color, name: customColor[action.payload.color.name]} : action.payload.color ;
+                state.color = (customColor?.[action.payload?.color?.name]) ? { ...action.payload.color, name: customColor[action.payload?.color?.name]} : action.payload.color ;
                 state.egg_groups = action.payload.egg_groups;
                 state.id = action.payload.id;
                 state.loading = false;

@@ -15,7 +15,7 @@ const PokeCard: React.FC<POKECARDPROPS> = (props) => {
                     <PokeNumber>#{props?.number?.toString()?.padStart(3,'0')}</PokeNumber>
                 </PokecardContainerText>
             </PokeBtn>
-            <PokeBtn style={{ width: 'auto', marginRight: 10}} onPress={() => props?.captureAction(props.url)} testID='pokecard-btn-capture'>
+            <PokeBtn style={{ width: 'auto', marginRight: 10}} onPress={() => props?.captureAction({ url: props?.url, name: props?.name })} testID='pokecard-btn-capture'>
                 <IconSimplePokebola fill={props?.captured ? undefined : 'gray'} fillShadow={props?.captured ? undefined : 'gray'}  />
             </PokeBtn>
         </PokecardContainer>

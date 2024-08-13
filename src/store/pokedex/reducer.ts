@@ -22,7 +22,6 @@ const pokedex = createSlice({
             .addCase(getListOfPokemons.pending, (state) => { state.loading = true })
             .addCase(getListOfPokemons.fulfilled, (state, action) => {
                 const { count, results, next, previous } = action.payload
-                console.log('aqui', next, previous)
                 state.listOfPokemons = next != state.next && (next && previous)? [...state.listOfPokemons, ...results] : results ;
                 if(state.search)
                     state.listOfPokemons =  state.listOfPokemons.filter( s => s.name.includes(state.search?.toLocaleLowerCase() ?? ''))
