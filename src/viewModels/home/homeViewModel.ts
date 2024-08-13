@@ -4,6 +4,7 @@ import { useEffect, useMemo } from 'react';
 import { getListOfPokemons } from '../../store/pokedex/action';
 import { changeSearchInput } from '../../store/pokedex/reducer';
 import { useNavigation } from '@react-navigation/native';
+import { setPokemon } from '../../store/pokemon/reducer';
 
 const useHomeViewModel = () => {
   const { listOfPokemons, loading, next, search } = useAppSelector( state => state.pokedex);
@@ -20,6 +21,7 @@ const useHomeViewModel = () => {
   const isLoading = useMemo( () => { return loading}, [loading])
 
   const seeDetails = (url: string) => {
+    dispatch(setPokemon(url))
     nav.navigate('InfoPokemon' as never)
   }
 

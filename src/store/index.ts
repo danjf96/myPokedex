@@ -1,10 +1,14 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import pokedex from './pokedex/reducer'
+import pokemon from './pokemon/reducer'
+import species from './species/reducer'
 import Reactotron from '../../ReactotronConfig'
 
 
 const reducer = combineReducers({
-    pokedex
+    pokedex,
+    pokemon,
+    species
 })
 // ...
 const store = configureStore({

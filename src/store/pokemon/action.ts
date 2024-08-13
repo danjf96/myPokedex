@@ -9,3 +9,10 @@ export const getInfosPokemon = createAsyncThunk<GETINFOSPOKEMONSRESULT, GETINFOS
         return data
     }
 )
+
+export const setPokemonAction = (state: POKEMONREDUX, action: {
+    payload: string;
+    type: string;
+}) => {
+    state.url = action.payload 
+}

@@ -2,30 +2,31 @@ interface GETINFOSPOKEMONPROPS {
     url: string
 }
 
-interface POEKMONREDUX {
+interface POKEMONREDUX extends GETINFOSPOKEMONSRESULT {
     loading: boolean,
+    url?: string
 }
 
 interface GETINFOSPOKEMONSRESULT {
     abilities: ABILITIESPOKEMON[],
     base_experience: number,
-    cries: CRIES,
-    game_indices: GAME_INDICE[],
     height: number,
-    held_items: any,
-    id: number,
-    is_default: boolean,
-    location_area_encounters: string,
     moves: MOVES[],
     name: string,
-    order: number,
-    past_abilities: any,
-    past_types: any,
-    species: DEFAULT_QUERY_RETURN_POKEAPI,
-    sprites: any,
-    stats: STATS,
+    stats: STATS[],
     weight: number,
-    types: TYPES_POKEMONS[]
+    types: TYPES_POKEMONS[],
+    species: DEFAULT_QUERY_RETURN_POKEAPI,
+    cries?: CRIES,
+    game_indices?: GAME_INDICE[],
+    held_items?: any,
+    id: number,
+    is_default?: boolean,
+    location_area_encounters?: string,
+    order?: number,
+    past_abilities?: any,
+    past_types?: any,
+    sprites?: any
 }
 
 interface TYPES_POKEMONS {

@@ -3,9 +3,11 @@ import { SafeAreaView, Text } from 'react-native'
 import { ThemeApp } from '../../assets/Theme'
 import Header from '../../components/header'
 import { useNavigation } from '@react-navigation/native'
+import useInfoPokemonViewModel from '../../viewModels/InfoPokemon/infoPokemonViewModel'
 
 const InfoPokemon: React.FC = (props) => {
     const nav = useNavigation()
+    const { pokemon } = useInfoPokemonViewModel()
     return (
         <SafeAreaView style={{ backgroundColor: ThemeApp(false).colors.background, height:'100%' }}>
             <Header 

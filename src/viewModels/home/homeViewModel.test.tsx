@@ -7,6 +7,12 @@ import { renderHook, waitFor } from '@testing-library/react-native';
 jest.mock('../../hooks/store/useAppSelector');
 jest.mock('../../hooks/store/useAppDispatch');
 jest.mock('../../store/pokedex/action');
+jest.mock('@react-navigation/native', () => ({
+  ...jest.requireActual('@react-navigation/native'),
+  useNavigation: () => ({
+    navigate: jest.fn(),
+  }),
+}));
 
 const useSelector = useAppSelector as unknown as jest.Mock
 const dispatch = useAppDispatch as unknown as jest.Mock
