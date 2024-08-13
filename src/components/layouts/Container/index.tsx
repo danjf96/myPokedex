@@ -6,10 +6,10 @@ import { SafeAreaViewContainer, ViewContainer, ScrollviewContainer } from './sty
 const Container: React.FC<CONTAINERPROPS> = (props) => {
     const renderScroll = (!props?.enabledScroll)
     ? 
-        <ViewContainer style={props?.style} testID='container-component'>{props?.children}</ViewContainer> 
+        <ViewContainer style={props?.style} testID='container-component' padding={props?.padding}>{props?.children}</ViewContainer> 
     : 
-        <ViewContainer style={props?.style}>
-            <ScrollviewContainer scrollEnabled={props.enabledScroll} testID='container-component' />
+        <ViewContainer style={props?.style} padding={props?.padding}>
+            <ScrollviewContainer scrollEnabled={props.enabledScroll} testID='container-component'>{props?.children}</ScrollviewContainer>
         </ViewContainer>
 
     return (

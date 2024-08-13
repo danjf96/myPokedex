@@ -1,4 +1,4 @@
-import { ImageProps, ImageSourcePropType } from "react-native";
+import { ImageSourcePropType, TextStyle, ViewStyle } from "react-native";
 
 export interface HEADERPROPS {
     title?: string,
@@ -8,4 +8,6 @@ export interface HEADERPROPS {
     onPress?: () => void,
     onPressLeft?: () => void,
     children?: React.ReactNode,
+    styleTitle?: TextStyle,
+    styleContainer?: ViewStyle    
 }

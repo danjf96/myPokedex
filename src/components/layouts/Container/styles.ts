@@ -2,12 +2,12 @@ import { Dimensions, ScrollView } from 'react-native'
 import styled from 'styled-components/native'
 import { SafeAreaView } from 'react-native'
 
-const { width } = Dimensions.get('screen')
+const { width } = Dimensions.get('window')
 
-export const ViewContainer = styled.View`
+export const ViewContainer = styled.View<{ padding?: string }>`
     width: ${width}px;
     height: 100%;
-    padding: ${({ theme }) => theme.padding.container}
+    padding: ${(props) => props.padding ? props.padding : props.theme.padding.container}
 `
 
 export const SafeAreaViewContainer = styled(SafeAreaView)`

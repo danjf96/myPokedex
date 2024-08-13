@@ -15,7 +15,8 @@ interface ThemeApp extends Theme {
         activeTabBottom: string,
         inactiveTabBottom: string
     },
-    font: string
+    font: string,
+    linearGradient: any
 }
 export const ThemeApp = (darkMode?: boolean) => <ThemeApp>{
     dark: false,
@@ -23,7 +24,7 @@ export const ThemeApp = (darkMode?: boolean) => <ThemeApp>{
         primary: "#FF1C1C",
         background: "white",
         card: "",
-        text: '#353535',
+        text: '#262626',
         border: "#9A9A9A",
         notification: "",
     },
@@ -39,7 +40,8 @@ export const ThemeApp = (darkMode?: boolean) => <ThemeApp>{
         activeTabBottom: '#2870FB',
         inactiveTabBottom: 'black'
     },
-    font: Platform.OS === 'ios' ? 'San Francisco' : 'Roboto'
+    font: Platform.OS === 'ios' ? 'San Francisco' : 'Roboto',
+    linearGradient: ['white', '#f7f7f7', '#e6e6e6']
 }
 
 // declare types theme

@@ -10,16 +10,18 @@ const Header: React.FC<HEADERPROPS> = ({
     onPressLeft,
     icon,
     iconLeft,
-    img
+    img,
+    styleTitle,
+    styleContainer
 }) => {
 
     return (
-        <HeaderMain>
+        <HeaderMain style={styleContainer}>
             <HeaderContainer>
                 {iconLeft && <TouchableOpacity onPress={onPressLeft} testID='header-left-btn'>
                     {(iconLeft)}
                 </TouchableOpacity>}
-                <HeaderTitle testID='header-title'>{title}</HeaderTitle>
+                <HeaderTitle testID='header-title' style={styleTitle}>{title}</HeaderTitle>
                 
                 {img && <ImageCenter source={img} testID='header-img'/>}
                 

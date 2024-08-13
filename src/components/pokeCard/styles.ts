@@ -1,7 +1,7 @@
 import { Dimensions } from 'react-native'
 import styled from 'styled-components/native'
 
-const { width } = Dimensions.get('screen')
+const { width } = Dimensions.get('window')
 
 export const PokecardContainer = styled.View`
     width: 100%;

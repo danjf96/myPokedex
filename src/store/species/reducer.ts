@@ -15,6 +15,12 @@ const initialState: SPECIESREDUX = {
     id: 0
 }
 
+// some colors are too light for the layout, so I change them here
+const customColor: any = {
+    yellow: '#b78b02',
+    white: '#d0cfcf'
+}
+
 const species = createSlice({
     name: 'species',
     initialState,
@@ -25,7 +31,7 @@ const species = createSlice({
         builder
             .addCase(getInfosSpecies.pending, (state) => { state.loading = true })
             .addCase(getInfosSpecies.fulfilled, (state, action) => {
-                state.color = action.payload.color;
+                state.color = (customColor?.[action.payload.color.name]) ? { ...action.payload.color, name: customColor[action.payload.color.name]} : action.payload.color ;
                 state.egg_groups = action.payload.egg_groups;
                 state.id = action.payload.id;
                 state.loading = false;
