@@ -1,6 +1,6 @@
 // include this line for mocking react-native-gesture-handler
 import 'react-native-gesture-handler/jestSetup';
-
+import { NativeModules } from 'react-native';
 // include this section and the NativeAnimatedHelper section for mocking react-native-reanimated
 jest.mock('react-native-reanimated', () => {
   const Reanimated = require('react-native-reanimated/mock');
@@ -18,3 +18,6 @@ jest.mock('react-native/Libraries/Animated/NativeAnimatedHelper');
 
 jest.mock('reactotron-react-native');
 // jest.mock('@reduxjs/toolkit');
+jest.mock('@react-native-async-storage/async-storage', () =>
+  require('@react-native-async-storage/async-storage/jest/async-storage-mock')
+);

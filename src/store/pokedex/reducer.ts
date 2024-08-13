@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit"
 import { changeSearch, getListOfPokemons, setMyListPoke } from "./action"
 import { Alert } from "react-native"
 
-const initialState: POKEDEXREDUX = {
+export const initialState: POKEDEXREDUX = {
     loading: false,
     listOfPokemons: [],
     count: 0,

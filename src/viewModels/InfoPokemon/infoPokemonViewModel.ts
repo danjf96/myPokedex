@@ -27,7 +27,7 @@ const useInfoPokemonViewModel = () => {
   }, [pokemon.name, pokemon.url, pokedex.myList])
 
   const verifyIfIsSave = useMemo(() => { 
-    return pokedex.myList.find( my => my.name === pokemon.name) ? true : false
+    return pokedex?.myList?.find( my => my.name === pokemon.name) ? true : false
   }, [pokedex.myList, pokemon.name])
 
   useEffect( () => {

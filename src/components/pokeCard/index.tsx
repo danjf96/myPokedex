@@ -7,7 +7,7 @@ const PokedexImg = require('../../assets/imgs/pokedex.png');
 const PokeCard: React.FC<POKECARDPROPS> = (props) => {
 
     return (
-        <PokecardContainer>
+        <PokecardContainer testID="poke-card">
             <PokeBtn onPress={() => props?.onPress(props.url)} testID='pokecard-card-btn'>
                 <PokeImage source={props?.img}  defaultSource={PokedexImg} testID='pokecard-img'/>
                 <PokecardContainerText>

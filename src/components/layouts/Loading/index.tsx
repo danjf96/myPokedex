@@ -7,7 +7,7 @@ const IS_LOADING = styled.ActivityIndicator`
 `
 
 const Loading: React.FC<{ visible: boolean, color?: string }> = ({visible, color = ThemeApp().customColors.loading }) => {
-    return visible ? <IS_LOADING size={'large'}  color={color}/> : null
+    return visible ? <IS_LOADING testID="loading-testid" size={'large'}  color={color}/> : null
 }
 
 export default Loading

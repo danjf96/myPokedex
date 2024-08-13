@@ -4,12 +4,17 @@ import { getInfosPokemon } from '../../store/pokemon/action';
 import { getInfosSpecies } from '../../store/species/action';
 import { useNavigation } from '@react-navigation/native';
 import useInfoPokemonViewModel from './infoPokemonViewModel';
-import { renderHook } from '@testing-library/react-native';
+import { renderHook, waitFor } from '@testing-library/react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { initialState as initialStatePokedex, setMyList } from '../../store/pokedex/reducer';
 
 jest.mock('../../hooks/store/useAppSelector');
 jest.mock('../../hooks/store/useAppDispatch');
 jest.mock('../../store/pokemon/action');
 jest.mock('../../store/species/action');
+jest.mock('../../store/pokedex/reducer', () => ({
+  setMyList: jest.fn(),
+}));
 jest.mock('@react-navigation/native', () => ({
   ...jest.requireActual('@react-navigation/native'),
   useNavigation: jest.fn(),
@@ -19,26 +24,41 @@ const useSelectorMock = useAppSelector as jest.Mock;
 const useDispatchMock = useAppDispatch as unknown as jest.Mock;
 const navigation = useNavigation as jest.Mock;
 
+const setItemMock = AsyncStorage.setItem as jest.Mock;
+const setMyListMock = setMyList as unknown as jest.Mock;
+
 describe('Info Pokemon ViewModel', () => {
   let dispatchMock: jest.Mock;
+  let getInfosPokemonMock: jest.Mock;
+  let getInfosSpeciesMock: jest.Mock;
 
   beforeEach(() => {
     dispatchMock = jest.fn();
+    getInfosPokemonMock = jest.fn();
+    getInfosSpeciesMock = jest.fn();
+
+    setMyListMock.mockImplementation(() => {});
+
     useDispatchMock.mockReturnValue(dispatchMock);
 
     useSelectorMock.mockReturnValue({
       pokemon: {
         url: 'pokemon-url',
+        name: 'pokemon',
         species: {
           url: 'species-url',
         },
       },
       species: {},
+      pokedex: { myList: []}
     });
 
     navigation.mockReturnValue({
       navigate: jest.fn(),
     });
+
+    setItemMock.mockClear();
+    setMyListMock.mockClear();
   });
 
   afterEach(() => {
@@ -64,6 +84,7 @@ describe('Info Pokemon ViewModel', () => {
         },
       },
       species: {},
+      pokedex: { ...initialStatePokedex }
     });
 
     rerender({});
@@ -76,6 +97,7 @@ describe('Info Pokemon ViewModel', () => {
 
     expect(result.current.pokemon).toEqual({
       url: 'pokemon-url',
+      name: 'pokemon',
       species: {
         url: 'species-url',
       },
@@ -87,5 +109,33 @@ describe('Info Pokemon ViewModel', () => {
     const { result } = renderHook(() => useInfoPokemonViewModel());
 
     expect(result.current.navigation).toBeDefined();
+  });
+
+  it('should correctly update savePokemon function and interact with AsyncStorage', async () => {
+    const { result } = renderHook(() => useInfoPokemonViewModel());
+
+    result.current.savePokemon();
+
+    await waitFor(() => {
+
+      expect(setMyListMock).toHaveBeenCalledWith({
+        list: [{ name: 'pokemon', url: 'pokemon-url' }],
+        type: 'ADD',
+      });
+  
+      // expect(setItemMock).toHaveBeenCalledWith(
+      //   'MY_LIST',
+      //   JSON.stringify([{ name: 'pokemon', url: 'pokemon-url' }])
+      // );
+    })
+    
+  });
+
+  it('should correctly verify if a Pokémon is saved', () => {
+    const { result } = renderHook(() => useInfoPokemonViewModel());
+
+    const isSaved = result.current.verifyIfIsSave;
+
+    expect(isSaved).toBe(false);
   });
 });
