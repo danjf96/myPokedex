@@ -1,23 +1,29 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { getListOfPokemons } from "./action"
+import { changeSearch, getListOfPokemons } from "./action"
 import { Alert } from "react-native"
 
 const initialState: POKEDEXREDUX = {
     loading: false,
     listOfPokemons: [],
-    count: 0
+    count: 0,
+    search: ''
 }
 
 const pokedex = createSlice({
     name: 'pokedex',
     initialState,
-    reducers: {},
+    reducers: {
+        changeSearchInput: changeSearch
+    },
     extraReducers: builder =>  {
         builder
             .addCase(getListOfPokemons.pending, (state) => { state.loading = true })
             .addCase(getListOfPokemons.fulfilled, (state, action) => {
                 const { count, results, next, previous } = action.payload
-                state.listOfPokemons = next != state.next ? [...state.listOfPokemons, ...results] : results ;
+                console.log('aqui', next, previous)
+                state.listOfPokemons = next != state.next && (next && previous)? [...state.listOfPokemons, ...results] : results ;
+                if(state.search)
+                    state.listOfPokemons =  state.listOfPokemons.filter( s => s.name.includes(state.search?.toLocaleLowerCase() ?? ''))
                 state.count = count;
                 state.next = next;
                 state.previous = previous;
@@ -28,4 +34,6 @@ const pokedex = createSlice({
     },
 })
 
+
+export const { changeSearchInput } = pokedex.actions
 export  default pokedex.reducer

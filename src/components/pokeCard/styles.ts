@@ -14,12 +14,13 @@ export const PokecardContainer = styled.View`
     margin-bottom: 15px;
     border-radius: 10px;
     border-color: ${({ theme }) => theme.colors.border};
-    justify-content: space-between
+    justify-content: space-between;
 `
 export const PokeBtn = styled.TouchableOpacity`
     flex-direction: row;
     align-items: center;
     width: 85%;
+   
 `
 
 export const PokecardContainerText = styled.View`

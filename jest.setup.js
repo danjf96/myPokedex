@@ -17,5 +17,4 @@ jest.mock('react-native-reanimated', () => {
 jest.mock('react-native/Libraries/Animated/NativeAnimatedHelper');
 
 jest.mock('reactotron-react-native');
-
-jest.mock('@reduxjs/toolkit');
+// jest.mock('@reduxjs/toolkit');

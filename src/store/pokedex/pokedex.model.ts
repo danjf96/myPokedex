@@ -4,17 +4,21 @@ interface POKEDEXREDUX {
     count: number
     next?: string,
     previous?: string,
+    search?: string
 }
 
 interface LISTPOKES {
     name: string,
-    url: string
+    url: string,
+    img?: string,
+    number?: number ,
 }
 
 interface GETLISTOFPOKEMONSPROPS {
     offset: number,
     limit: number,
-    next?: string
+    next?: string,
+    search?: string
 }
 
 interface GETLISTOFPOKEMONSRESULT {

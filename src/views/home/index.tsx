@@ -1,27 +1,31 @@
 import React from 'react'
-import { ActivityIndicator, FlatList, Text } from 'react-native'
+import { FlatList, SafeAreaView } from 'react-native'
 import useHomeViewModel from '../../viewModels/home/homeViewModel'
 import Container from '../../components/layouts/Container'
 import PokeCard from '../../components/pokeCard'
-import { URL_IMG_POKEMON } from '../../contants'
+import { URL_IMG_POKEMON } from '../../constants'
 import Loading from '../../components/layouts/Loading'
 import Header from '../../components/header'
+import { ThemeApp } from '../../assets/Theme'
+import FormHeader from '../../components/FormHeader'
 
 const Home = () => {
-    const { pokeList, seeDetails, capturePokemon, pagination, isLoading } = useHomeViewModel()
+    const { pokeList, seeDetails, capturePokemon, pagination, isLoading, changeSearchValue, filter } = useHomeViewModel()
     return (
-        <>
-            <Header />
-            <Container>
-            
+        <SafeAreaView style={{ backgroundColor: ThemeApp(false).colors.background, height:'100%' }}>
+            <Container >  
+                <Header>
+                    <FormHeader onSubmit={filter} changeValue={changeSearchValue} />
+                </Header>
+             
                 <FlatList 
-                    style={{ flex: 1 }}
+                    style={{ flex: 1, height: '100%' }}
                     showsVerticalScrollIndicator={false}
                     renderItem={ ({ item, index }) => <PokeCard 
-                            img={{ uri: `${URL_IMG_POKEMON}${index+1}.png`}} 
+                            img={{ uri: item.img}} 
                             name={item.name} 
                             url={item.url} 
-                            number={index+1} 
+                            number={item?.number || 0} 
                             captureAction={capturePokemon} 
                             captured={false}
                             onPress={seeDetails}
@@ -33,7 +37,7 @@ const Home = () => {
                 />
                 <Loading visible={isLoading} />
             </Container>
-        </>
+        </SafeAreaView>
         
     )
 }

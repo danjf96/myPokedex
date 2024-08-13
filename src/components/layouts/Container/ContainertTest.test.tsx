@@ -6,7 +6,7 @@ import { ThemeProvider } from 'styled-components/native';
 import { ThemeApp } from '../../../assets/Theme';
 import { Text } from 'react-native';
 
-const TestContainer = (props:any) => (<ThemeProvider theme={ThemeApp(false)}><Container {...props}/></ThemeProvider>)
+const TestContainer = (props:any) => <ThemeProvider theme={ThemeApp(false)}><Container {...props}/></ThemeProvider>
 
 describe('Container Test', () => {
     const labelTest = 'TESTE';

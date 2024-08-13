@@ -2,9 +2,10 @@ import useAppSelector from '../../hooks/store/useAppSelector';
 import useAppDispatch from '../../hooks/store/useAppDispatch';
 import { useEffect, useMemo } from 'react';
 import { getListOfPokemons } from '../../store/pokedex/action';
+import { changeSearchInput } from '../../store/pokedex/reducer';
 
 const useHomeViewModel = () => {
-  const { listOfPokemons, loading, next } = useAppSelector( state => state.pokedex);
+  const { listOfPokemons, loading, next, search } = useAppSelector( state => state.pokedex);
   const dispatch = useAppDispatch();
 
   const getList = () => {
@@ -29,6 +30,12 @@ const useHomeViewModel = () => {
       dispatch(getListOfPokemons({ limit: 20, offset: 0, next }))
   }
 
+  const filter = () => {
+    dispatch(getListOfPokemons({ limit: search ? 10000 : 20, offset: 0, search }))
+  }
+  
+  const changeSearchValue = (text: string) => { dispatch(changeSearchInput(text))  }
+
   useEffect( () => {
     getList();
   }, [])
@@ -38,7 +45,9 @@ const useHomeViewModel = () => {
     isLoading,
     seeDetails,
     capturePokemon,
-    pagination
+    pagination,
+    filter,
+    changeSearchValue
   };
 };
 

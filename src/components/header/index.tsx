@@ -16,7 +16,7 @@ const Header: React.FC<HEADERPROPS> = ({
             <HeaderContainer>
                 <HeaderTitle testID='header-title'>{title}</HeaderTitle>
                 
-                <ImageCenter source={img} testID='header-img'/>
+                {img && <ImageCenter source={img} testID='header-img'/>}
                 
                 <TouchableOpacity onPress={onPress} testID='header-btn'>
                     {icon}
