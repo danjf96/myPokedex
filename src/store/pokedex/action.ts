@@ -1,6 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
 import api from "../../service/api"
-import { URL_IMG_POKEMON } from "../../constants";
 import { setDataStorage } from "../../hooks/storage";
 import { mountPokeList } from "../../utils/functions";
 

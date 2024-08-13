@@ -18,7 +18,7 @@ const Home = () => {
                     <FormHeader onSubmit={filter} changeValue={changeSearchValue} />
                 </Header>
                 
-                {pokeList.length === 0 && <Text style={{ margin: 10 }}>Nenhum pokemon encontrado!</Text>}
+                {pokeList.length === 0 && !isLoading && <Text style={{ margin: 10 }}>Nenhum pokemon encontrado!</Text>}
 
                 <FlatList 
                     style={{ flex: 1, height: '100%' }}

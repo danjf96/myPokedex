@@ -18,7 +18,7 @@ const InfoPokemon: React.FC = () => {
     const backgroundColor = ThemeApp(false).colors.background
 
     return (
-        <SafeAreaView style={{ backgroundColor }}>
+        <SafeAreaView style={{ backgroundColor, flex: 1, height: '100%'}}>
             <Header 
                 styleContainer={{ paddingHorizontal: 12 }}
                 title={name}
@@ -29,7 +29,7 @@ const InfoPokemon: React.FC = () => {
                 icon={(<IconSimplePokebola width={40} height={40} fill={ !verifyIfIsSave ?  ThemeApp(false).customColors.inactiveTabBottom : ''}  opacity={!verifyIfIsSave ? 0.5 : 1 }/>)}
             />
             
-            <Container enabledScroll={true} padding={"0px"}>
+            <Container enabledScroll={true} padding={0}>
                 <>
                     <HeaderContainerInfo 
                         background={color} 

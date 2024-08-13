@@ -13,9 +13,9 @@ const Container: React.FC<CONTAINERPROPS> = (props) => {
         </ViewContainer>
 
     return (
-        <SafeAreaViewContainer>
+        <>
             {renderScroll}            
-        </SafeAreaViewContainer>
+        </>
     )
     
 }

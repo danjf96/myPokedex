@@ -4,10 +4,10 @@ import { SafeAreaView } from 'react-native'
 
 const { width } = Dimensions.get('window')
 
-export const ViewContainer = styled.View<{ padding?: string }>`
+export const ViewContainer = styled.View<{ padding?: number }>`
     width: ${width}px;
     height: 100%;
-    padding: ${(props) => props.padding ? props.padding : props.theme.padding.container};
+    padding: ${(props) => props?.padding != undefined ?  `${props.padding}px` : props.theme.padding.container};
 `
 
 export const SafeAreaViewContainer = styled(SafeAreaView)`

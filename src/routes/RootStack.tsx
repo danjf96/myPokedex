@@ -4,6 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 //ROUTES
 import TabNavigator from './TabNavigator';
 import InfoPokemon from '../views/InfoPokemon';
+import Splash from '../views/splash';
 
 const Stack = createStackNavigator();
 
@@ -11,7 +12,7 @@ const RootStack = () => {
 
         return (
             <Stack.Navigator
-                initialRouteName="BottomTabs"
+                initialRouteName="Splash"
                 screenOptions={{ gestureEnabled: false, headerShown: false }}
             >
                 <Stack.Screen
@@ -22,6 +23,11 @@ const RootStack = () => {
                 <Stack.Screen
                     name="InfoPokemon"
                     component={InfoPokemon}
+                />
+
+                 <Stack.Screen
+                    name="Splash"
+                    component={Splash}
                 />
 
             </Stack.Navigator>
