@@ -3,6 +3,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 //ROUTES
 import TabNavigator from './TabNavigator';
+import InfoPokemon from '../views/InfoPokemon';
 
 const Stack = createStackNavigator();
 
@@ -17,6 +18,12 @@ const RootStack = () => {
                     name="BottomTabs"
                     component={TabNavigator}
                 />  
+                
+                <Stack.Screen
+                    name="InfoPokemon"
+                    component={InfoPokemon}
+                />
+
             </Stack.Navigator>
     )
 }

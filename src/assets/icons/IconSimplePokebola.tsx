@@ -7,9 +7,9 @@ import Svg, {
     ClipPath,
 } from 'react-native-svg';
 
-const IconSimplePokebola = ({ width = 48, height = 48, viewBox = "0 0 595.3 594.1", fill= "#FF1C1C", fillShadow = "#DF1818"}) => {
+const IconSimplePokebola = ({ width = 48, height = 48, viewBox = "0 0 595.3 594.1", fill= "#FF1C1C", fillShadow = "#DF1818", opacity = 1}) => {
     return (
-        <Svg height={height} width={width} viewBox={viewBox} >
+        <Svg height={height} width={width} viewBox={viewBox} opacity={opacity}>
             <G xmlns="http://www.w3.org/2000/svg" id="Pokéball_1_">
                 <G id="Colours">
                     <Path  id="Down" fill="#FFFFFF" d="M297.6,380.9c-40.4,0-74.1-28.6-82.1-66.6H81.1c9.5,110.5,102.2,197.2,215.1,197.2    s205.7-86.7,215.1-197.2H379.7C371.7,352.4,338,380.9,297.6,380.9z"/>

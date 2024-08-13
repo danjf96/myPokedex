@@ -7,19 +7,24 @@ const Header: React.FC<HEADERPROPS> = ({
     title = 'Pokedex',
     children,
     onPress,
+    onPressLeft,
     icon,
+    iconLeft,
     img
 }) => {
 
     return (
         <HeaderMain>
             <HeaderContainer>
+                {iconLeft && <TouchableOpacity onPress={onPressLeft} testID='header-left-btn'>
+                    {(iconLeft)}
+                </TouchableOpacity>}
                 <HeaderTitle testID='header-title'>{title}</HeaderTitle>
                 
                 {img && <ImageCenter source={img} testID='header-img'/>}
                 
                 <TouchableOpacity onPress={onPress} testID='header-btn'>
-                    {icon}
+                    {(icon)}
                 </TouchableOpacity>
             </HeaderContainer>
             {children}

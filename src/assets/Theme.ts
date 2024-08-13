@@ -11,14 +11,16 @@ interface ThemeApp extends Theme {
         error: string,
         warning: string,
         success: string,
-        info: string
+        info: string,
+        activeTabBottom: string,
+        inactiveTabBottom: string
     },
     font: string
 }
 export const ThemeApp = (darkMode?: boolean) => <ThemeApp>{
     dark: false,
     colors: {
-        primary: "#E54A4A",
+        primary: "#FF1C1C",
         background: "white",
         card: "",
         text: '#353535',
@@ -33,7 +35,9 @@ export const ThemeApp = (darkMode?: boolean) => <ThemeApp>{
         error: '#E54A4A',
         warning: '#FDBA34',
         success: '#20A67B',
-        info: '#2870FB'
+        info: '#2870FB',
+        activeTabBottom: '#2870FB',
+        inactiveTabBottom: 'black'
     },
     font: Platform.OS === 'ios' ? 'San Francisco' : 'Roboto'
 }
