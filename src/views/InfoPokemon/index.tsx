@@ -18,7 +18,7 @@ const InfoPokemon: React.FC = () => {
     const backgroundColor = ThemeApp(false).colors.background
 
     return (
-        <SafeAreaView style={{ backgroundColor, height:'100%' }}>
+        <SafeAreaView style={{ backgroundColor }}>
             <Header 
                 styleContainer={{ paddingHorizontal: 12 }}
                 title={name}

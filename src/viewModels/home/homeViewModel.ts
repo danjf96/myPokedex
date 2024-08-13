@@ -1,6 +1,6 @@
 import useAppSelector from '../../hooks/store/useAppSelector';
 import useAppDispatch from '../../hooks/store/useAppDispatch';
-import { useEffect, useMemo } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 import { getListOfPokemons } from '../../store/pokedex/action';
 import { changeSearchInput, setMyList } from '../../store/pokedex/reducer';
 import { useNavigation } from '@react-navigation/native';
@@ -29,9 +29,9 @@ const useHomeViewModel = () => {
     nav.navigate('InfoPokemon' as never)
   }
 
-  const capturePokemon = (poke: LISTPOKES) => {
+  const capturePokemon = useCallback((poke: LISTPOKES) => {
     dispatch(setMyList({ list: [poke], type: verifyIfIsSave(poke.name) ? 'REMOVE' : 'ADD' }))
-  }
+  }, [myList])
 
   const pagination = () => {
     if(next)
@@ -44,9 +44,9 @@ const useHomeViewModel = () => {
   
   const changeSearchValue = (text: string) => { dispatch(changeSearchInput(text))  }
 
-  const verifyIfIsSave = (name: string) => {
+  const verifyIfIsSave = useCallback((name: string) => {
     return myList.find( my => my.name === name) ? true : false
-  }
+  },[myList])
 
   useEffect( () => {
     getList();

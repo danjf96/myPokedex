@@ -1,5 +1,5 @@
 import React from 'react'
-import { FlatList, SafeAreaView } from 'react-native'
+import { FlatList, SafeAreaView, Text } from 'react-native'
 import useHomeViewModel from '../../viewModels/home/homeViewModel'
 import Container from '../../components/layouts/Container'
 import PokeCard from '../../components/pokeCard'
@@ -17,7 +17,9 @@ const Home = () => {
                 <Header>
                     <FormHeader onSubmit={filter} changeValue={changeSearchValue} />
                 </Header>
-             
+                
+                {pokeList.length === 0 && <Text style={{ margin: 10 }}>Nenhum pokemon encontrado!</Text>}
+
                 <FlatList 
                     style={{ flex: 1, height: '100%' }}
                     showsVerticalScrollIndicator={false}

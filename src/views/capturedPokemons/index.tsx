@@ -13,7 +13,7 @@ const CapturedPokemons = () => {
         <SafeAreaView style={{ backgroundColor: ThemeApp(false).colors.background, height:'100%' }}>
             <Container >  
                 <Header title='Captured Pokemons' />
-                {myPokeList.length === 0 && <Text style={{ margin: 10 }}>Nenhum pokemon capturado</Text>}
+                {myPokeList.length === 0 && <Text style={{ margin: 10 }}>Nenhum pokemon capturado!</Text>}
                 <FlatList 
                     style={{ flex: 1, height: '100%' }}
                     showsVerticalScrollIndicator={false}
